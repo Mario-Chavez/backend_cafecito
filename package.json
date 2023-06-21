@@ -4,7 +4,9 @@
   "description": "backende de cafecito",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node index.js",
+    "dev": "nodemon --exec babel-node index.js"
+
   },
   "keywords": [],
   "author": "mario chavez",
