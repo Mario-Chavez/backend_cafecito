@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import * as dotenv from "dotenv";
+import "./src/database/dbConnections";
 
 dotenv.config(); //puedo leer variable de entorno
 
