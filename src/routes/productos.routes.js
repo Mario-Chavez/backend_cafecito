@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { obtenerProductos } from "../controllers/productos.controllers";
+import { crearProducto, obtenerProductos } from "../controllers/productos.controllers";
 
 const router = Router();
 // // Rutas
@@ -7,6 +7,6 @@ const router = Router();
 //     res.send("prueba de solicitud de peticiopn get del backend");
 // });
 
-router.route("/productos").get(obtenerProductos);
+router.route("/productos").get(obtenerProductos).post(crearProducto);
 
 export default router;
