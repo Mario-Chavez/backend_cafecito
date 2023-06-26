@@ -1,5 +1,5 @@
 import { connect } from "mongoose";
-import { MONGODB_URI } from "../routes/config";
+import { MONGODB_URI } from "../../config";
 
 // Opcion 1
 // (async () => {

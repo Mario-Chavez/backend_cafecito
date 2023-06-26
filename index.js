@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import * as dotenv from "dotenv";
 import "./src/database/dbConnections";
+import productosRouter from "./src/routes/productos.routes";
 
 dotenv.config(); //puedo leer variable de entorno
 
@@ -21,7 +22,4 @@ app.use(express.json()); //permite interpretar el formato json
 app.use(express.urlencoded({ extended: true })); //permite en el objeto requiest string o array
 app.use(morgan("dev")); // nos da informacion extra en la terminal
 
-// Rutas
-app.get("/prueba", (req, res) => {
-    res.send("prueba de solicitud de peticiopn get del backend");
-});
+app.use("/apicafe", productosRouter);
