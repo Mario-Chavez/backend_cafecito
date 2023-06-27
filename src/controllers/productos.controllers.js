@@ -20,7 +20,6 @@ export const crearProducto = async (req, res) => {
         const productoNuevo = new Producto(req.body);
         await productoNuevo.save(); //se guarda en base de dato con save() de mogose
         res.status(201).json({
-            productoNuevo,
             mensaje: "el producto fue creado correctamente",
         });
     } catch (error) {
