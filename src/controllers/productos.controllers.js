@@ -25,7 +25,7 @@ export const crearProducto = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(404).json({
-            mensaje: "error al buscar producto",
+            mensaje: "error al guardar producto en db",
         });
     }
 };
