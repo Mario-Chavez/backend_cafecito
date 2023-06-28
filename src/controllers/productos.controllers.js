@@ -46,3 +46,19 @@ export const borrarProducto = async (req, res) => {
         });
     }
 };
+
+// delete editar
+
+export const editarProducto = async (req, res) => {
+    try {
+        // extraer el id del request y en el body
+        // parasamos el id seguido de una , despues el objeto q recibimos en el body
+        await Producto.findByIdAndUpdate(req.params.id, req.body);
+        res.status(200).json({ mensaje: "producto editado correctamente" });
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            mensaje: "error al editar producto no se encontro en db",
+        });
+    }
+};
