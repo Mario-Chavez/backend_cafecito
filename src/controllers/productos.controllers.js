@@ -29,3 +29,20 @@ export const crearProducto = async (req, res) => {
         });
     }
 };
+
+// delete product
+
+export const borrarProducto = async (req, res) => {
+    try {
+        // ruta ("/productos/:id")
+        // tengo q buscar el id que me mandan por param y luego solicitar a mongoose el borrar por id
+        const { id } = req.params;
+        await Producto.findByIdAndDelete(id);
+        res.status(200).json({ mensaje: "producto eliminiado" });
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            mensaje: "error al borrar producto no se encontro en db",
+        });
+    }
+};

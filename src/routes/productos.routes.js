@@ -1,12 +1,16 @@
 import { Router } from "express";
-import { crearProducto, obtenerProductos } from "../controllers/productos.controllers";
+import {
+    borrarProducto,
+    crearProducto,
+    obtenerProductos,
+} from "../controllers/productos.controllers";
 
 const router = Router();
-// // Rutas
-// app.get("/prueba", (req, res) => {
-//     res.send("prueba de solicitud de peticiopn get del backend");
-// });
 
+// Rutas
 router.route("/productos").get(obtenerProductos).post(crearProducto);
+
+// delete
+router.route("/productos/:id").delete(borrarProducto);
 
 export default router;
