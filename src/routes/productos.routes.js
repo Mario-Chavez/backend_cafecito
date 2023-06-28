@@ -4,6 +4,7 @@ import {
     crearProducto,
     editarProducto,
     obtenerProductos,
+    obtenerUnProductos,
 } from "../controllers/productos.controllers";
 
 const router = Router();
@@ -11,7 +12,11 @@ const router = Router();
 // Rutas
 router.route("/productos").get(obtenerProductos).post(crearProducto);
 
-// delete and put
-router.route("/productos/:id").delete(borrarProducto).put(editarProducto);
+// delete, put and find one product
+router
+    .route("/productos/:id")
+    .delete(borrarProducto)
+    .put(editarProducto)
+    .get(obtenerUnProductos);
 
 export default router;

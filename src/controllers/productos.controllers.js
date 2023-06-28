@@ -62,3 +62,16 @@ export const editarProducto = async (req, res) => {
         });
     }
 };
+
+// controlador para obtener un producto
+export const obtenerUnProductos = async (req, res) => {
+    try {
+        const productoEncontrado = await Producto.findById(req.params.id);
+        res.status(200).json(productoEncontrado);
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            mensaje: "error no se pudo encontrar el producto",
+        });
+    }
+};
