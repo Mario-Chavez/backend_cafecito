@@ -6,11 +6,22 @@ import {
     obtenerProductos,
     obtenerUnProductos,
 } from "../controllers/productos.controllers";
+import { check } from "express-validator";
 
 const router = Router();
 
 // Rutas
-router.route("/productos").get(obtenerProductos).post(crearProducto);
+router
+    .route("/productos")
+    .get(obtenerProductos)
+    .post(
+        [
+            check("nombreProducto")
+                .notEmpty()
+                .withMessage("el nombre del producto es un dato obligatorio"),
+        ],
+        crearProducto
+    );
 
 // delete, put and find one product
 router

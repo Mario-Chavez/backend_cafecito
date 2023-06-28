@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator";
 import Producto from "../models/products";
 
 // controlador para obtener los productos
@@ -17,6 +18,12 @@ export const obtenerProductos = async (req, res) => {
 
 export const crearProducto = async (req, res) => {
     try {
+        // trabajar con el resultado de la validacion
+        const errors = validationResult(req);
+        // erros.isEmpty() es true si si hay error
+        if (!errors.isEmpty()) {
+            return res.status(404).json({ errores: errors.array() });
+        }
         const productoNuevo = new Producto(req.body);
         await productoNuevo.save(); //se guarda en base de dato con save() de mogose
         res.status(201).json({
