@@ -36,6 +36,11 @@ router
                         throw new Error("El precio debe estar entre 1 y 15000");
                     }
                 }),
+            check("imagen")
+                .notEmpty()
+                .withMessage("La imagen es un dato obligatorio")
+                .matches(/^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|svg)$/)
+                .withMessage("La url debe ser correcta con la extension que corresponda"),
         ],
         crearProducto
     );
