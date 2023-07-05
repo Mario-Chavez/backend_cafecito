@@ -17,7 +17,7 @@ router
     .post(
         [
             check("nombreProducto")
-                .notEmpty()
+                .notEmpty() //obligatorio
                 .withMessage("el nombre del producto es un dato obligatorio")
                 .isLength({ min: 2, max: 100 })
                 .withMessage(
@@ -41,6 +41,11 @@ router
                 .withMessage("La imagen es un dato obligatorio")
                 .matches(/^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|svg)$/)
                 .withMessage("La url debe ser correcta con la extension que corresponda"),
+            check("categoria")
+                .notEmpty()
+                .withMessage("La categoria es un dato obligatorio")
+                .isIn(["bebida caliente", "dulce", "salado"]) // validar loas categorias que vienen del front
+                .withMessage("La categoria debe ser correcta"),
         ],
         crearProducto
     );
