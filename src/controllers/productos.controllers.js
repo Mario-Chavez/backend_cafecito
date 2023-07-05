@@ -20,9 +20,10 @@ export const crearProducto = async (req, res) => {
     try {
         // trabajar con el resultado de la validacion
         const errors = validationResult(req);
-        // erros.isEmpty() es true si si hay error
+        // erros.isEmpty() true si esta vacio es q no hay error
+        // si no esta esta vacio hay error
         if (!errors.isEmpty()) {
-            return res.status(404).json({ errores: errors.array() });
+            return res.status(400).json({ errores: errors.array() });
         }
         const productoNuevo = new Producto(req.body);
         await productoNuevo.save(); //se guarda en base de dato con save() de mogose
