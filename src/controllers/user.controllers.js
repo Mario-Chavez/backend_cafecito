@@ -11,19 +11,19 @@ export const login = async (req, res) => {
         if (!usuario) {
             //si el usuario existe
             return res.status(400).json({
-                mensaje: "Correo o password invalido - correo",
+                mensaje: "Correo o password invalido",
             });
         }
         // si no es valido el password
         if (password !== usuario.password) {
             return res.status(400).json({
-                mensaje: "Correo o password invalido - password",
+                mensaje: "Correo o password invalido",
             });
         }
 
         //responder que el usuario es correcto
         res.status(200).json({
-            mensaje: "El usuario existe",
+            mensaje: "El usuario esta lolgueado",
             uid: usuario._id,
             nombre: usuario.nombreUsuario,
         });
@@ -37,10 +37,10 @@ export const login = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
     try {
-        const { email } = req.body;
+        const { email, password } = req.body;
 
         //verificar si el email ya existe
-        let usuario = await User.findOne({ email }); //devulve un null
+        let usuario = await User.findOne({ email });
         if (usuario) {
             //si el usuario existe
             return res.status(400).json({
@@ -49,6 +49,7 @@ export const crearUsuario = async (req, res) => {
         }
         //guardamos el nuevo usuario en la BD
         usuario = new User(req.body);
+
         // // editar el usuario para encriptar la contraseña
         const salt = bcrypt.genSaltSync(10); //cantidad de veces q se ejecuta el algoritmo
         usuario.password = bcrypt.hashSync(password, salt); //despues guardara el pasword
@@ -56,7 +57,7 @@ export const crearUsuario = async (req, res) => {
         await usuario.save();
         res.status(201).json({
             mensaje: "usuario creado",
-            nombre: usuario.nombre,
+            nombre: usuario.nombreUsuario,
             uid: usuario._id,
         });
     } catch (error) {
@@ -68,7 +69,6 @@ export const crearUsuario = async (req, res) => {
 };
 
 export const listarUsuarios = async (req, res) => {
-    // res.send("esto es una prueba de una peticion get");
     try {
         //buscar en la BD la collection de productos
         const usuarios = await User.find();
