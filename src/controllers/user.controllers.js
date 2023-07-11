@@ -9,13 +9,15 @@ export const login = async (req, res) => {
         //verificar si el email ya existe
         let usuario = await User.findOne({ email }); //devulve un null
         if (!usuario) {
-            //si el usuario existe
+            //si el usuario no existe
             return res.status(400).json({
                 mensaje: "Correo o password invalido",
             });
         }
-        // si no es valido el password
-        if (password !== usuario.password) {
+        // si no es valido el password usamos bcryp y su metodo para desencrypctar la contraseña
+        const passwordValido = bcrypt.compareSync(password, usuario.password); // booleano
+
+        if (!passwordValido) {
             return res.status(400).json({
                 mensaje: "Correo o password invalido",
             });
@@ -23,7 +25,7 @@ export const login = async (req, res) => {
 
         //responder que el usuario es correcto
         res.status(200).json({
-            mensaje: "El usuario esta lolgueado",
+            mensaje: "El usuario esta logueado",
             uid: usuario._id,
             nombre: usuario.nombreUsuario,
         });
