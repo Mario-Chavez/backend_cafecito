@@ -4,6 +4,7 @@ import morgan from "morgan";
 import * as dotenv from "dotenv";
 import "./src/database/dbConnections";
 import productosRouter from "./src/routes/productos.routes";
+import userRouter from "./src/routes/user.routes";
 
 dotenv.config(); //puedo leer variable de entorno
 
@@ -23,3 +24,4 @@ app.use(express.urlencoded({ extended: true })); //permite en el objeto requiest
 app.use(morgan("dev")); // nos da informacion extra en la terminal
 
 app.use("/apicafe", productosRouter);
+app.use("/apicafe/auth", userRouter);
