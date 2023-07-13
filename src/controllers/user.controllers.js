@@ -22,6 +22,7 @@ export const login = async (req, res) => {
                 mensaje: "Correo o password invalido",
             });
         }
+        // generar token
 
         //responder que el usuario es correcto
         res.status(200).json({
