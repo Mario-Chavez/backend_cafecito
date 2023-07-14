@@ -25,7 +25,7 @@ export const login = async (req, res) => {
         }
         // generar token JWT
         const token = await generarJWT(usuario._id, usuario.nombreUsuario);
-        //responder que el usuario es correcto
+        //responder que el usuario es correcto y mandamos un objeto en la respuesta
         res.status(200).json({
             mensaje: "El usuario esta logueado",
             uid: usuario._id,
